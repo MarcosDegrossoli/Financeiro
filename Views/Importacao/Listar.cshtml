@@ -1,0 +1,36 @@
+﻿@model List<Financeiro.Models.Lancamento>
+
+@{
+    ViewData["Title"] = "Lançamentos Importados";
+}
+
+<h1>Lançamentos Importados</h1>
+
+<p>
+    <a asp-controller="Importacao" asp-action="Index">Importar Novo Arquivo</a>
+</p>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Descrição</th>
+            <th>Conta</th>
+            <th>Banco</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DataPostagem.ToLocalTime().ToString("dd/MM/yyyy")</td>
+                <td>@item.Valor.ToString("C2")</td>
+                <td>@item.Memo</td>
+                <td>@item.Conta.NumeroConta</td>
+                <td>@item.Conta.Banco.Nome</td>
+            </tr>
+        }
+    </tbody>
+</table>

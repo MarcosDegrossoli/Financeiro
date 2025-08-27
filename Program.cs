@@ -1,15 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using Financeiro.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Adicione os serviços ao contêiner.
 builder.Services.AddControllersWithViews();
+
+// Adicione o serviço DbContext e configure-o para usar PostgreSQL
+builder.Services.AddDbContext<OfxDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure o pipeline de requisições HTTP.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

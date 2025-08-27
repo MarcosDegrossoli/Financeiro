@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Importar OFX";
+}
+
+<h1>Importar Arquivo OFX</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Importacao" asp-action="Importar" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label">Selecione o arquivo OFX</label>
+                <input type="file" name="arquivo" class="form-control" />
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Importar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.Mensagem != null)
+{
+    <div class="alert alert-info mt-3" role="alert">
+        @ViewBag.Mensagem
+    </div>
+}
