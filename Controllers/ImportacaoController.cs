@@ -118,7 +118,7 @@ namespace Financeiro.Controllers
             {
                 foreach (var item in extrato)
                 {
-                    if (idsDoOfx.Contains(item.TransactionID))
+                    if (novosIds.Contains(item.TransactionID))
                     {
                         var lancamento = new Lancamento
                         {
