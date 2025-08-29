@@ -16,6 +16,12 @@ namespace Financeiro.Controllers
 
         public async Task<IActionResult> Listar(DateTime? dataInicial, DateTime? dataFinal)
         {
+            if (!dataInicial.HasValue && !dataFinal.HasValue)
+            {
+                dataFinal = DateTime.Today; // Data de hoje
+                dataInicial = dataFinal.Value.AddDays(-7); // 7 dias atrás
+            }
+
             var query = _context.Lancamentos
                 .Include(l => l.Conta)
                     .ThenInclude(c => c.Banco)
