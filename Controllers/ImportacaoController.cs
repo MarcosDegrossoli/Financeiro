@@ -88,18 +88,6 @@ namespace Financeiro.Controllers
 
             return Json(lancamentos);
         }
-
-        public async Task<IActionResult> Listar()
-        {
-            var lancamentos = await _context.Lancamentos
-                .Include(l => l.Conta)
-                    .ThenInclude(c => c.Banco)
-                .OrderByDescending(l => l.DataPostagem)
-                .ToListAsync();
-
-            return View(lancamentos);
-        }
-
         private async Task<List<Lancamento>> ObterNovosLançamentos(List<Transaction> extrato, Conta? conta)
         {
             var novosLancamentos = new List<Lancamento>();
@@ -118,7 +106,7 @@ namespace Financeiro.Controllers
             {
                 foreach (var item in extrato)
                 {
-                    if (idsDoOfx.Contains(item.TransactionID))
+                    if (novosIds.Contains(item.TransactionID))
                     {
                         var lancamento = new Lancamento
                         {
