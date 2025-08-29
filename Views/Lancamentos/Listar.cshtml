@@ -11,6 +11,28 @@
 </p>
 <hr />
 
+<form asp-controller="Lancamentos" asp-action="Listar" method="get">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Data Inicial</label>
+                <input type="date" name="dataInicial" value="@ViewBag.DataInicial" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label>Data Final</label>
+                <input type="date" name="dataFinal" value="@ViewBag.DataFinal" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </div>
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
